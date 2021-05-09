@@ -44,14 +44,6 @@ class validationMiddleware{
             res.status(400).send('Cart not found!');
         }
     }
-    async productInCart(email:string,name:string){
-
-        const cart = await ServiceUtility.listCart(email);
-        //@ts-ignore
-        const items = cart.items;
-        const filtered = items.filter((elem: { name: any; })=>elem.name==name);
-        return filtered.length>0;
-    }
     async canAddProduct(req:Request,res:Response,next:NextFunction){
         const {email,name} = req.body;
         const cart = await ServiceUtility.listCart(email);
